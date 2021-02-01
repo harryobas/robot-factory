@@ -2,6 +2,7 @@ class Robot::Factory::RobotController
 
     class << self
         def boot_robot(robot)
+            raise Robot::Factory::Error.new, "robot is already in boot mode" unless bootable_robot?(robot)
             robot.name = generate_robot_name()
             robot.settings[:boot] = true
             robot
@@ -32,6 +33,10 @@ class Robot::Factory::RobotController
 
         def generate_robot_name()
             "#{('A'..'Z').to_a.shuffle.sample(2).join + (0..9).to_a.shuffle.sample(3).join}"
+        end
+
+        def bootable_robot?(robot)
+            !robot.name && !robot.settings[:boot] && robot.settings[:initialized]
         end
     end
 
