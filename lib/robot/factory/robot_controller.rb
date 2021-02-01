@@ -31,7 +31,7 @@ class Robot::Factory::RobotController
         private 
 
         def generate_robot_name()
-            "#{('A'..'Z').to_a.shuffle.last(3).join + (0..9).to_a.shuffle.first(3).join}"
+            "#{('A'..'Z').to_a.shuffle.sample(2).join + (0..9).to_a.shuffle.sample(3).join}"
         end
     end
 

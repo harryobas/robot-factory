@@ -78,7 +78,12 @@ RSpec.describe Robot::Factory::ControlPanel do
                 expect(@control_panel.factory_robots[robot.name]).to eq @robot
             end
         end
-
+        context "robot is not found" do
+            it "raises error" do
+                expect{@control_panel.get_robot("AA###%!")
+                }.to raise_error(Robot::Factory::Error, "robot not found")
+            end  
+        end   
     end
 
    

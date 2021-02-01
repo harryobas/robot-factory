@@ -24,6 +24,7 @@ class Robot::Factory::ControlPanel
     end
     
     def get_robot(robot_name)
+        raise Robot::Factory::Error.new, "robot not found" unless robot_exist?(robot_name)
         robot = @factory_robots[robot_name]
         case !robot.name && robot.settings[:reset]
         when true
