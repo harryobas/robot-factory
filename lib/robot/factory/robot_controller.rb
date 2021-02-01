@@ -3,7 +3,13 @@ class Robot::Factory::RobotController
     class << self
         def boot_robot(robot)
             robot.name = generate_robot_name()
+            robot.settings[:boot] = true
             robot
+        end
+
+        def hibernate_robot(robot)
+            robot.name = nil
+            robot.settings[:hibernate] = true
         end
 
         private 

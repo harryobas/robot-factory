@@ -10,4 +10,10 @@ class Robot::Factory::ControlPanel
         robot = Robot::Factory::RobotController.boot_robot(robot)
         @factory_robots["#{robot.name}"] = robot 
     end
+
+    def remove_robot(robot_name)
+        robot = @factory_robots[robot_name]
+        Robot::Factory::RobotController.hibernate_robot(robot)
+    end
+
 end
