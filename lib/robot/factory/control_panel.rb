@@ -12,8 +12,20 @@ class Robot::Factory::ControlPanel
     end
 
     def remove_robot(robot_name)
+        raise Robot::Factory::Error.new, "robot not found" unless robot_exist?(robot_name)
         robot = @factory_robots[robot_name]
         Robot::Factory::RobotController.hibernate_robot(robot)
     end
+
+    def reset_robot(robot_name)
+        robot = @factory_robots[robot_name]
+        Robot::Factory::RobotController.reset_robot(robot)
+    end 
+
+    private 
+    def robot_exist?(robot_name)
+        @factory_robots.keys.include?(robot_name)
+    end
+
 
 end

@@ -34,8 +34,20 @@ RSpec.describe Robot::Factory::ControlPanel do
             @control_panel.remove_robot(@robot.name)
             expect(@robot.settings[:hibernate]).to eq true
         end
+        it "raises error when robot is not found" do
+            expect{@control_panel.remove_robot("AA333")}.to raise_error(Robot::Factory::Error, "robot not found")
+        end
     end
+    describe "#reset_robot" do
+        it 'sets a robot to factory settings' do
+            @control_panel.reset_robot(@robot.name)
+            expect(@robot.name).to eq nil
+        end 
+        it "puts a robot in reset state" do 
+            @control_panel.reset_robot(@robot.name)
+            expect(@robot.settings[:reset]).to eq true 
+        end
 
-    
-      
+    end
+   
 end

@@ -12,6 +12,11 @@ class Robot::Factory::RobotController
             robot.settings[:hibernate] = true
         end
 
+        def reset_robot(robot)
+            robot.name = nil
+            robot.settings[:reset] = true
+        end
+
         private 
 
         def generate_robot_name()
