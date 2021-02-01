@@ -72,7 +72,13 @@ RSpec.describe Robot::Factory::ControlPanel do
                 expect(@control_panel.factory_robots[robot.name]).to eq @robot
             end
         end
-        
+        context "robot is niether on reset or hibernate mode" do
+            it "returns robot with existing name" do
+                robot = @control_panel.get_robot(@robot.name)
+                expect(@control_panel.factory_robots[robot.name]).to eq @robot
+            end
+        end
+
     end
 
    
