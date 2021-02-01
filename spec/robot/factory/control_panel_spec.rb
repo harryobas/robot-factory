@@ -63,8 +63,16 @@ RSpec.describe Robot::Factory::ControlPanel do
                 expect(@control_panel.factory_robots[robot.name]).to eq @robot 
             end
         end
-        context "ronbot is on hibanate mode" do 
-            it "returns robot with a new "
+        context "robot is on hibernate mode" do 
+            it "returns robot with a new name" do
+                name_before_hib = @robot.name
+                @control_panel.remove_robot(@robot.name)
+                robot = @control_panel.get_robot(name_before_hib)
+                expect(robot.name).not_to eq nil
+                expect(@control_panel.factory_robots[robot.name]).to eq @robot
+            end
+        end
+        
     end
 
    

@@ -22,7 +22,7 @@ class Robot::Factory::RobotController
             robot.settings[:reset] = false 
         end 
 
-        def boot_hibanate_robot(robot)
+        def boot_hibernate_robot(robot)
             robot.name = generate_robot_name
             robot.settings[:hibernate] = false
 

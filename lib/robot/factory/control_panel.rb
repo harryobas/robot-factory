@@ -31,7 +31,7 @@ class Robot::Factory::ControlPanel
             @factory_robots["#{robot.name}"] = factory_robots.delete robot_name
         when false
             if !robot.name && robot.settings[:hibernate]
-                Robot::Factory::RobotController.boot_hibernate(robot)
+                Robot::Factory::RobotController.boot_hibernate_robot(robot)
                 @factory_robots["#{robot.name}"] = factory_robots.delete robot_name
             else
                 return robot
