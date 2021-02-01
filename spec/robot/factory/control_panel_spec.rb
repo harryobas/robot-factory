@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Robot::Factory::ControlPanel do
     context "initialization" do 
-        it "initializes with an empty dictionary of factory robots" do
+        it "initializes with an empty hash of factory robots" do
             control_panel = Robot::Factory::ControlPanel.new
             expect(control_panel.factory_robots).to be_a Hash
             expect(control_panel.factory_robots.empty?).to eq true 
@@ -53,5 +53,19 @@ RSpec.describe Robot::Factory::ControlPanel do
         }.to raise_error(Robot::Factory::Error, "robot not found")
         end
     end
+    describe "#get_robot" do 
+        context 'robot is on reset mode' do
+            it "returns robot with a new name" do
+                name_before_reset = @robot.name
+                @control_panel.reset_robot(@robot.name)
+                robot = @control_panel.get_robot(name_before_reset)
+                expect(robot.name).not_to eq nil
+                expect(@control_panel.factory_robots[robot.name]).to eq @robot 
+            end
+        end
+        context "ronbot is on hibanate mode" do 
+            it "returns robot with a new "
+    end
+
    
 end

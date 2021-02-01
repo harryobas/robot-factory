@@ -14,7 +14,18 @@ class Robot::Factory::RobotController
 
         def reset_robot(robot)
             robot.name = nil
-            robot.settings[:reset] = true
+            robot.settings[:reset] = true   
+        end
+
+        def boot_reset_robot(robot)
+            robot.name = generate_robot_name
+            robot.settings[:reset] = false 
+        end 
+
+        def boot_hibanate_robot(robot)
+            robot.name = generate_robot_name
+            robot.settings[:hibernate] = false
+
         end
 
         private 
