@@ -14,6 +14,7 @@ class Robot::Factory::RobotController
         end
 
         def reset_robot(robot)
+            raise Robot::Factory::Error.new, "robot is not booted" unless resetable_robot?(robot)
             robot.name = nil
             robot.settings[:reset] = true   
         end
@@ -37,6 +38,14 @@ class Robot::Factory::RobotController
 
         def bootable_robot?(robot)
             !robot.name && !robot.settings[:boot] && robot.settings[:initialized]
+        end
+
+        def hibernateable_robot?(robot)
+            robot.name && robot.settings[:boot] && robot.settings[:initialized]
+        end
+
+        def resetable_robot?(robot)
+            robot.name && robot.settings[:boot] && robot.settings[:initialized]
         end
     end
 
