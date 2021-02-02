@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require "robot/factory"
+
+def run(control_panel)
+    menu()
+
+    cmd = STDIN.gets.chomp
+
+    case cmd 
+    when 'add'
+        robot = create_robot
+        control_panel.add_robot(robot)
+        puts "new robot on factory floor"
+        puts "name: #{robot.name}"
+    when 'remove' 
+        puts "enter robot name:"
+        robot_name = STDIN.gets.chomp
+        control_panel.remove_robot(robot_name)
+        puts "#{robot_name} removed from factory floor"
+    when 'reset' 
+        puts "enter robot name:"
+        robot_name = STDIN.gets.chomp
+        control_panel.reset_robot(robot_name)
+        puts "#{robot_name} is now reset"
+    when 'retrive'
+        puts "enter robot name:"
+        robot_name = STDIN.gets.chomp
+        robot = control_panel.get_robot(robot_name)
+        puts "robot retrived: #{robot.name}"
+    when 'x'
+        abort()
+    else
+        puts 'invalid command'
+        run(control_panel)
+    end
+
+rescue Robot::Factory::Error => e 
+    puts "error #{e.message}"
+    run(control_panel)
+end
+
+def menu 
+    print <<-EOF
+    usage:
+    add: bring a robot on the factory floor
+    remove: take a robot off the factory floor
+    reset: reset a robot
+    retrive: get/find a robot  
+    x: exit 
+  EOF
+    
+end
+
+def create_robot 
+    Robot::Factory::FactoryRobot.new
+end
+
+def create_control_panel
+    Robot::Factory::ControlPanel.new
+end
+
+if __FILE__ == $PROGRAM_NAME
+    control_panel = create_control_panel
+    loop do
+        run(control_panel)
+    end
+    
+  end
+
+
+
+
+
+
+
+
