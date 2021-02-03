@@ -14,7 +14,7 @@ RSpec.describe Robot::Factory::RobotController do
         end
         it "raises error when robot is already booted" do
             expect{2.times{Robot::Factory::RobotController.boot_robot(@robot)}
-            }.to raise_error(Robot::Factory::Error, "robot is already in boot mode")
+            }.to raise_error(Robot::Factory::Error, "robot is already in boot state")
         end  
     end
 
@@ -30,6 +30,7 @@ RSpec.describe Robot::Factory::RobotController do
             expect(@robot.settings[:reset]).to eq true
         end
     end
+
 
 
 end

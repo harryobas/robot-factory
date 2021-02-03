@@ -13,31 +13,33 @@ def run(control_panel)
         control_panel.add_robot(robot)
         puts "new robot on factory floor"
         puts "name: #{robot.name}"
+        puts
     when 'remove' 
         puts "enter robot name:"
         robot_name = STDIN.gets.chomp
         control_panel.remove_robot(robot_name)
         puts "#{robot_name} removed from factory floor"
+        puts
     when 'reset' 
         puts "enter robot name:"
         robot_name = STDIN.gets.chomp
         control_panel.reset_robot(robot_name)
         puts "#{robot_name} is now reset"
+        puts
     when 'retrive'
         puts "enter robot name:"
         robot_name = STDIN.gets.chomp
         robot = control_panel.get_robot(robot_name)
         puts "robot retrived: #{robot.name}"
+        puts
     when 'x'
         abort()
     else
-        puts 'invalid command'
-        run(control_panel)
+        puts "invalid command"
     end
 
 rescue Robot::Factory::Error => e 
     puts "error #{e.message}"
-    run(control_panel)
 end
 
 def menu 
