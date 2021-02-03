@@ -26,7 +26,7 @@ def run(control_panel)
         control_panel.reset_robot(robot_name)
         puts "#{robot_name} is now reset"
         puts
-    when 'retrive'
+    when 'get'
         puts "enter robot name:"
         robot_name = STDIN.gets.chomp
         robot = control_panel.get_robot(robot_name)
