@@ -13,6 +13,6 @@ A Dockerfile is included to enable ease of execution on either Linux, mac or win
 
 4. $ sudo docker run -it factory:latest
 
-5. log-parser# bin/factory
+5. robot-factory# bin/factory
 
 
